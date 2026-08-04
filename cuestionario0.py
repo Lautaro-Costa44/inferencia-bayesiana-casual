@@ -291,11 +291,11 @@ El orden de observacion real no importa para el calculo. Lo unico que importa es
 
 # %%
 respuestas["Valor de verdad"] = [
-0, # 0. Siempre
-0, # 1. A veces
-0, # 2. Nunca
+0.9, # 0. Siempre
+0.05, # 1. A veces
+0.05, # 2. Nunca
 """
-Justifique
+Si una hipótesis predice con 0 uno de los datos observados, implica lógicamente que ese dato no puede ocurrir. Pero como ocurre, la hipotesis se hace falsa.
 """,
 ]
 
@@ -315,13 +315,13 @@ Justifique
 
 # %%
 respuestas["Teorías causales"] = [
-0, # 0. El modelo causal que se corresponde con la realidad causal subyacente nunca puede ser mejor prediciendo que los complejos algoritmos de AI/ML.
-0, # 1. El modelo causal que se corresponde con la realidad causal subyacente a veces puede ser mejor, y a veces peor, que los complejos algoritmos de AI/ML.
-0, # 2. El modelo causal que se corresponde con la realidad causal subyacente nunca puede ser peor prediciendo que los complejos algoritmos de AI/ML.
-0, # 3. No son comparables porque los modelos causales solo explican, no predicen.
-0, # 4. Ninguna de las anteriores
+0.02, # 0. El modelo causal que se corresponde con la realidad causal subyacente nunca puede ser mejor prediciendo que los complejos algoritmos de AI/ML.
+0.08, # 1. El modelo causal que se corresponde con la realidad causal subyacente a veces puede ser mejor, y a veces peor, que los complejos algoritmos de AI/ML.
+0.85, # 2. El modelo causal que se corresponde con la realidad causal subyacente nunca puede ser peor prediciendo que los complejos algoritmos de AI/ML.
+0.02, # 3. No son comparables porque los modelos causales solo explican, no predicen.
+0.03, # 4. Ninguna de las anteriores
 """
-Justifique
+El modelo causal que efectivamente coincide con el proceso generador real de los datos captura toda la informacion relevante para predecir. Cualquier algoritmo de AI/ML, por mas complejo que sea, en el mejor de los casos solo puede aproximarse a esa misma capacidad predictiva, pero no superarla, ya que esta aprendiendo patrones a partir de los mismos datos que el modelo causal ya explica correctamente.
 """,
 ]
 
@@ -338,11 +338,11 @@ Justifique
 
 # %%
 respuestas["Predicción e información"] = [
-0, # 0. Siempre
-0, # 1. A veces
-0, # 2. Nunca
+0.02, # 0. Siempre
+0.08, # 1. A veces
+0.9, # 2. Nunca
 """
-Justifique
+Predecir mejor significa que el dato observado es mas esperado pero no mas informativo. Por lo tanto es menor la informacion que aporta la observacion.
 """,
 ]
 
@@ -359,11 +359,11 @@ Justifique
 
 # %%
 respuestas["Modelos e información"] = [
-0, # 0. Siempre
-0, # 1. A veces
-0, # 2. Nunca
+0.03, # 0. Siempre
+0.07, # 1. A veces
+0.9, # 2. Nunca
 """
-Justifique
+Para evaluar modelos, no se prefiere al que acumula mas informacion sino al que minimiza la informacion y la explica con la menor incertidumbre (datos esperados)
 """,
 ]
 
@@ -378,11 +378,11 @@ Justifique
 
 # %%
 respuestas["Evaluación de modelos"] = [
-0, # 0. Siempre
-0, # 1. A veces
-0, # 2. Nunca
+0.3, # 0. Siempre
+0.4, # 1. A veces
+0.3, # 2. Nunca
 """
-Justifique
+He investigado, pero no pude encontrar una respuesta mas clara, con la informacion que obtuve pongo mas creencia en "A veces".
 """,
 ]
 
@@ -397,11 +397,11 @@ Justifique
 
 # %%
 respuestas["Contrafactuales"] = [
-0, # 0. Siempre
-0, # 1. A veces
-0, # 2. Nunca
+0.33, # 0. Siempre
+0.34, # 1. A veces
+0.33, # 2. Nunca
 """
-Justifique
+No he podido dar con la respuesta.
 """,
 ]
 
@@ -432,19 +432,19 @@ Justifique
 
 # %%
 respuestas["Diversificación"] = [
-0, # 0. Recursos asignados a Cara: 0.0
-0, # 1. Recursos asignados a Cara: 0.1
-0, # 2. Recursos asignados a Cara: 0.2
-0, # 3. Recursos asignados a Cara: 0.3
-0, # 4. Recursos asignados a Cara: 0.4
-0, # 5. Recursos asignados a Cara: 0.5
-0, # 6. Recursos asignados a Cara: 0.6
-0, # 7. Recursos asignados a Cara: 0.7
-0, # 8. Recursos asignados a Cara: 0.8
-0, # 9. Recursos asignados a Cara: 0.9
-0, # 10. Recursos asignados a Cara: 1.0
+0.01, # 0. Recursos asignados a Cara: 0.0
+0.01, # 1. Recursos asignados a Cara: 0.1
+0.01, # 2. Recursos asignados a Cara: 0.2
+0.02, # 3. Recursos asignados a Cara: 0.3
+0.1, # 4. Recursos asignados a Cara: 0.4
+0.7, # 5. Recursos asignados a Cara: 0.5
+0.1, # 6. Recursos asignados a Cara: 0.6
+0.02, # 7. Recursos asignados a Cara: 0.7
+0.01, # 8. Recursos asignados a Cara: 0.8
+0.01, # 9. Recursos asignados a Cara: 0.9
+0.01, # 10. Recursos asignados a Cara: 1.0
 """
-Justifique
+Coloque estos valores viendo la simulacion hecha en diversificacion.py
 """,
 ]
 
