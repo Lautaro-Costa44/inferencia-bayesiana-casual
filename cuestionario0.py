@@ -42,11 +42,11 @@ respuestas = {}
 
 # %%
 respuestas["Moneda"] = [
-0, # 0. Anverso (Cara)
-0, # 1. Reverso (Sello)
-0, # 2. Canto (Borde)
+0.49, # 0. Anverso (Cara)
+0.49, # 1. Reverso (Sello)
+0.02, # 2. Canto (Borde)
 """
-Justifique
+En un universo ideal, la probabilidad de que sea cara o sello es 0,5. Sin chances de que caiga en el borde, sin embargo no tenemos informacion de que ese sea el contexto.
 """,
 ]
 
@@ -62,12 +62,12 @@ Justifique
 
 # %%
 respuestas["Cajas"] = [
-0, # 0. Caja 0
-0, # 1. Caja 1
-0, # 2. Caja 2
+0.33, # 0. Caja 0
+0.33, # 1. Caja 1
+0.33, # 2. Caja 2
 0, # 3. Otro lugar
 """
-Justifique
+Sabiendo que solo puede estar en la cajas, se descarta otro lugar. Y entre las cajas, sin mas informacion, la probabilidad queda distribuida asi
 """,
 ]
 
@@ -84,13 +84,15 @@ Justifique
 
 # %%
 respuestas["Mentir"] = [
-0, # 0. Máxima incertidumbre (entropía)
-0, # 1. Mínima incertidumbre (entropía)
-0, # 2. Máxima incertidumbre (entropía) dada la información disponible (restricciones)
+0.2, # 0. Máxima incertidumbre (entropía)
+0., # 1. Mínima incertidumbre (entropía)
+0.7, # 2. Máxima incertidumbre (entropía) dada la información disponible (restricciones)
 0, # 3. Mínima incertidumbre (entropía) dada la información disponible (restricciones)
-0, # 4. Ninguna de las anteriores
+0.1, # 4. Ninguna de las anteriores
 """
-Justifique
+Maximizar incertidumbre = dividir las creencias en partes iguales (hablar de lo q sabes)
+Usando la informacion disponible (no hablando de lo que no sabes)
+0 en minima incertidumbre porque es lo opuesto al principio de no mentir
 """,
 ]
 
@@ -118,16 +120,16 @@ Justifique
 # %%
 respuestas["Universos"] = [
 0, # 0. Regalo = 1, Abren = 1
-0, # 1. Regalo = 1, Abren = 2
-0, # 2. Regalo = 1, Abren = 3
-0, # 3. Regalo = 2, Abren = 1
+0.16, # 1. Regalo = 1, Abren = 2
+0.16, # 2. Regalo = 1, Abren = 3
+0.16, # 3. Regalo = 2, Abren = 1
 0, # 4. Regalo = 2, Abren = 2
-0, # 5. Regalo = 2, Abren = 3
-0, # 6. Regalo = 3, Abren = 1
-0, # 7. Regalo = 3, Abren = 2
+0.16, # 5. Regalo = 2, Abren = 3
+0.16, # 6. Regalo = 3, Abren = 1
+0.16, # 7. Regalo = 3, Abren = 2
 0, # 8. Regalo = 3, Abren = 3
 """
-Justifique
+El regalo no puede estar en la caja que nos muestran por lo tanto nos dejan 6 opciones donde cada una tiene la misma probabilidad (1/6)
 """,
 ]
 
@@ -148,14 +150,16 @@ Justifique
 
 # %%
 respuestas["Historia"] = [
-0, # 0. Siglo 21
-0, # 1. Siglo 20
-0, # 2. Siglo 19
-0, # 3. Siglo 18
-0, # 4. Siglo 17
-0, # 5. Antes
+0.02, # 0. Siglo 21
+0.04, # 1. Siglo 20
+0.04, # 2. Siglo 19
+0.4, # 3. Siglo 18
+0.3, # 4. Siglo 17
+0.2, # 5. Antes
 """
-Justifique
+Siglo 18, aparece el teorema de Bayes
+Siglo 17, nacimiento de la teoria de la probabilidad
+Antes, pudieron haber indicios de razonamiento para incertidumbre
 """,
 ]
 
@@ -171,11 +175,11 @@ Justifique
 
 # %%
 respuestas["Conjunta"] = [
-0, # 0. Siempre
-0, # 1. A veces
-0, # 2. Nunca
+0.9, # 0. Siempre
+0.05, # 1. A veces
+0.05, # 2. Nunca
 """
-Justifique
+Esta es la regla general del producto para la probabilidad conjunta
 """,
 ]
 
@@ -191,11 +195,11 @@ Justifique
 
 # %%
 respuestas["Independencia"] = [
-0, # 0. Siempre
-0, # 1. A veces
-0, # 2. Nunca
+0.9, # 0. Siempre
+0.05, # 1. A veces
+0.05, # 2. Nunca
 """
-Justifique
+¿Mal hecho el enunciado? Ya que si A es independiente de B, entonces P(A|B) = P(A)
 """,
 ]
 
@@ -218,17 +222,17 @@ Justifique
 
 # %%
 respuestas["Descomposiciones"] = [
-0, # 0. 1
-0, # 1. N - 1
-0, # 2. N
-0, # 3. N * (N - 1)
-0, # 4. N * N
-0, # 5. N! - 1
-0, # 6. N!
-0, # 7. N ^ N - 1
-0, # 8. N ^ N
+0.01, # 0. 1
+0.01, # 1. N - 1
+0.02, # 2. N
+0.01, # 3. N * (N - 1)
+0.01, # 4. N * N
+0.02, # 5. N! - 1
+0.9, # 6. N!
+0.01, # 7. N ^ N - 1
+0.01, # 8. N ^ N
 """
-Justifique
+La cantidad de composiciones es N! ya que cada orden distinto de las N variables es una descomposicion valida
 """,
 ]
 
@@ -245,11 +249,11 @@ Justifique
 
 # %%
 respuestas["Teorema de Bayes"] = [
-0, # 0. Siempre
-0, # 1. A veces
-0, # 2. Nunca
+0.9, # 0. Siempre
+0.05, # 1. A veces
+0.05, # 2. Nunca
 """
-Justifique
+Segun lo visto en anteriores materias, el denominador del teorema de Bayes actua como una constante de normalizacion y no cambia ya que no depende de la hipotesis que estemos evaluando
 """,
 ]
 
@@ -267,11 +271,11 @@ Justifique
 
 # %%
 respuestas["Predicciones"] = [
-0, # 0. Siempre
-0, # 1. A veces
-0, # 2. Nunca
+0.05, # 0. Siempre
+0.15, # 1. A veces
+0.8, # 2. Nunca
 """
-Justifique
+El orden de observacion real no importa para el calculo. Lo unico que importa es condicionar correctamente respecto al orden elegido para descomponer.
 """,
 ]
 
