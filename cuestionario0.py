@@ -463,8 +463,8 @@ Coloque estos valores viendo la simulacion hecha en diversificacion.py
 
 # %%
 respuestas["Apuesta individual"] = [
-0, # 0. No
-0, # 1. Sí
+0.9, # 0. No
+0.1, # 1. Sí
 """
 Justifique
 """,
