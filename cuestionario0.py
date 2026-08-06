@@ -466,7 +466,7 @@ respuestas["Apuesta individual"] = [
 0.9, # 0. No
 0.1, # 1. Sí
 """
-Justifique
+Usando la simulacion creada como "apuesta-individual.py" se ve que la mediana es negativa por lo tanto, no conviene jugar.
 """,
 ]
 
@@ -486,11 +486,12 @@ Justifique
 
 # %%
 respuestas["Teoría de Utilidad Esperada"] = [
-0, # 0. Siempre
-0, # 1. A veces
-0, # 2. Nunca
+0.7, # 0. Siempre
+0.2, # 1. A veces
+0.1, # 2. Nunca
 """
-Justifique
+Segun lo que investigue, la teoria de la utilidad esperada penaliza las perdidadas mas de lo que benefician las ganancias. En este caso la penalizacion es mas fuerte que la ganancia.
+Si sale Cara y Sello en las primeras dos jugadas, te quedas con 90 porciento de lo que tenias. Osea cada perdida cuesta mas de lo que recuperas con cada ganancia.
 """,
 ]
 
