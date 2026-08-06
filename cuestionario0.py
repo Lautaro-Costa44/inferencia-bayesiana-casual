@@ -492,6 +492,7 @@ respuestas["Teoría de Utilidad Esperada"] = [
 """
 Segun lo que investigue, la teoria de la utilidad esperada penaliza las perdidadas mas de lo que benefician las ganancias. En este caso la penalizacion es mas fuerte que la ganancia.
 Si sale Cara y Sello en las primeras dos jugadas, te quedas con 90 porciento de lo que tenias. Osea cada perdida cuesta mas de lo que recuperas con cada ganancia.
+Por lo tanto no conviente jugar. ¿Siempre = no conviene?
 """,
 ]
 
@@ -509,11 +510,11 @@ Si sale Cara y Sello en las primeras dos jugadas, te quedas con 90 porciento de 
 
 # %%
 respuestas["Fondo común"] = [
-0, # 0. No conviene
-0, # 1. Indistinto
-0, # 2. Sí conviene
+0.05, # 0. No conviene
+0.15, # 1. Indistinto
+0.8, # 2. Sí conviene
 """
-Justifique
+Agregar jugadores al fondo comun va a hacer menos riesgozo la apuesta.
 """,
 ]
 
@@ -530,11 +531,11 @@ Justifique
 
 # %%
 respuestas["Impuestos"] = [
-0, # 0. Disminuye
-0, # 1. No cambia
-0, # 2. Aumenta
+0.02, # 0. Disminuye
+0.08, # 1. No cambia
+0.9, # 2. Aumenta
 """
-Justifique
+Como al aumentar personas en la apuesta, la tasa de crecimiento aumenta. Sumado a que vamos a recibir los beneficios sin gastar nuestros fondos. Es totalmente rentable.
 """,
 ]
 
