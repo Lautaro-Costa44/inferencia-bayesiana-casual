@@ -1,0 +1,41 @@
+Salida en consola de 02-comparacion_modelos.py (ejercicio 2), con MUESTRAS = 20000.
+
+Esta porque el script tarda bastante en correr (3 muestreos de 4 cadenas x 20000 muestras),
+asi que se guarda lo que imprimio para no tener que correrlo de nuevo. De aca salen las
+tablas de la seccion 2 de practica_2_2.md.
+
+Que guarda:
+- Selector, intento 1 y 2: cada corrida del selector M. Para cada una: divergencias y r_hat
+  maximo (diagnosticos de convergencia), cuantas muestras cayeron en cada modelo (visitas),
+  el prior de M usado y el posterior de M estimado. El intento 2 se hizo porque en el
+  intento 1 el modelo Base casi no se visito (1 de 80000), asi que se le dio mas prior.
+- Resultado: log-evidencia de cada modelo relativa a la mejor, y P(M | Datos) con prior
+  uniforme entre modelos.
+- Punto 4: diagnosticos del modelo propuesto corrido solo, y la tabla del 4c
+  (P(p_fila > p_columna | Datos) en concentracion baja). Los puntos 4a y 4b son graficos:
+  figuras-02/2-4a_operadores.png y figuras-02/2-4b_desempenos.png.
+
+Como el muestreo es aleatorio, si se vuelve a correr los numeros cambian un poco.
+
+------------------------------------------------------------------------------------------
+
+--- Selector, intento 1 ---
+  divergencias: 0   r_hat máx: 1.0025  (debe ser <= 1.01)
+  visitas del selector: {'Base': 1, 'Operadores': 1229, 'Propuesto': 78770}
+  prior M: [0.3333 0.3333 0.3333]   posterior M: [0.     0.0154 0.9846]
+--- Selector, intento 2 ---
+  divergencias: 0   r_hat máx: 1.0168  (debe ser <= 1.01)
+  visitas del selector: {'Base': 8187, 'Operadores': 38627, 'Propuesto': 33186}
+  prior M: [9.934e-01 6.500e-03 1.000e-04]   posterior M: [0.1023 0.4828 0.4148]
+RESULTADO (prior uniforme entre modelos):
+  Modelo        log-evid. rel.   P(M|Datos)
+  Base                  -10.59       0.0000
+  Operadores             -4.01       0.0178
+  Propuesto               0.00       0.9821
+--- Punto 4: modelo de mayor evidencia = Propuesto ---
+  divergencias: 0   r_hat máx: 1.0005  (debe ser <= 1.01)
+4c) P(p_fila > p_columna | Datos), 20 par.Eq/mL:
+        DTU1    DTU2    DTU6
+DTU1  0.0000  0.0010  0.0323
+DTU2  0.9990  0.0000  0.9117
+DTU6  0.9677  0.0883  0.0000

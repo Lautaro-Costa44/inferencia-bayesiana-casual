@@ -328,7 +328,9 @@ def construir_modelo_base(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray]:
         PHI: Matriz de diseño, shape (N, 2) con columnas [1, altura_madre]
         Y: Vector de alturas observadas, shape (N, 1)
     """
-    pass
+    Y = df["altura"].to_numpy().reshape(-1, 1)
+    PHI = np.column_stack([np.ones(len(df)), df["altura_madre"].to_numpy()])
+    return PHI, Y
 
 
 def construir_modelo_biologico(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray]:
@@ -348,7 +350,10 @@ def construir_modelo_biologico(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray
         PHI: Matriz de diseño, shape (N, 3) con columnas [1, altura_madre, I(sexo=F)]
         Y: Vector de alturas observadas, shape (N, 1)
     """
-    pass
+    Y = df["altura"].to_numpy().reshape(-1, 1)
+    sexo_F = (df["sexo"] == "F").to_numpy().astype(float)  # I(sexo = F)
+    PHI = np.column_stack([np.ones(len(df)), df["altura_madre"].to_numpy(), sexo_F])
+    return PHI, Y
 
 
 def construir_modelo_identitario(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray]:
@@ -369,7 +374,13 @@ def construir_modelo_identitario(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarr
              [altura_madre, I_grupo_0, I_grupo_1, ..., I_grupo_{N//2 - 1}]
         Y: Vector de alturas observadas, shape (N, 1)
     """
-    pass
+    Y = df["altura"].to_numpy().reshape(-1, 1)
+    ids = df["id"].to_numpy()
+    n_grupos = ids.max() // 2
+    grupo = ids % n_grupos  # ID mod (max(ID)/2): grupos de 2 personas
+    indicadoras = np.column_stack([(grupo == g).astype(float) for g in range(n_grupos)])
+    PHI = np.column_stack([df["altura_madre"].to_numpy(), indicadoras])
+    return PHI, Y
 
 
 def comparar_modelos_altura(df: pd.DataFrame) -> dict:
@@ -391,7 +402,28 @@ def comparar_modelos_altura(df: pd.DataFrame) -> dict:
         - "mejor_modelo": str, nombre del modelo con mayor log-evidencia
         - "posterior_modelos": dict con probabilidades posteriores normalizadas
     """
-    pass
+    constructores = {
+        "base": construir_modelo_base,
+        "biologico": construir_modelo_biologico,
+        "identitario": construir_modelo_identitario,
+    }
+    log_evidencias = {}
+    for nombre, construir in constructores.items():
+        PHI, Y = construir(df)
+        log_evidencias[nombre] = float(ml.log_evidence(Y, PHI).squeeze())
+
+    # Posterior con prior uniforme: restar el máximo, exponenciar y normalizar
+    L = np.array(list(log_evidencias.values()))
+    scores = np.exp(L - L.max())
+    posterior = scores / scores.sum()
+
+    return {
+        "evidencia_base": log_evidencias["base"],
+        "evidencia_biologico": log_evidencias["biologico"],
+        "evidencia_identitario": log_evidencias["identitario"],
+        "mejor_modelo": max(log_evidencias, key=log_evidencias.get),
+        "posterior_modelos": dict(zip(log_evidencias, posterior)),
+    }
 
 
 def calcular_media_geometrica(log_evidencia: float, n: int) -> float:
@@ -410,7 +442,7 @@ def calcular_media_geometrica(log_evidencia: float, n: int) -> float:
     Returns:
         Media geométrica de la evidencia por dato (escalar positivo)
     """
-    pass
+    return np.exp(log_evidencia / n)
 
 
 # =============================================================================
@@ -822,7 +854,7 @@ if __name__ == "__main__":
         "\n10. Ejercicio de alturas: efecto causal del sexo biológico sobre la altura"
     )
     try:
-        df_alturas = pd.read_csv("alturas.csv")
+        df_alturas = pd.read_csv("datos/alturas.csv")
         print(f"   - Datos de alturas cargados: {len(df_alturas)} filas")
     except Exception as e:
         print(f"   - Error al cargar alturas.csv: {e}")
@@ -841,6 +873,28 @@ if __name__ == "__main__":
         )
         print("   - Mejor modelo:", resultados_altura["mejor_modelo"])
         print("   - Posterior modelos:", resultados_altura["posterior_modelos"])
+
+        # 2.3: evidencia (en escala logarítmica) de los 3 modelos
+        nombres = ["Base", "Biológico", "Grupos al azar"]
+        log_evs = [
+            resultados_altura["evidencia_base"],
+            resultados_altura["evidencia_biologico"],
+            resultados_altura["evidencia_identitario"],
+        ]
+        plt.figure(figsize=(8, 6))
+        plt.bar(nombres, log_evs, color=plt.cm.tab10(np.arange(3)), alpha=0.8)
+        plt.ylabel("log P(Datos | Modelo)")
+        plt.title("Evidencia de los modelos causales alternativos")
+        plt.grid(True, alpha=0.3, axis="y")
+        plt.savefig("datos/2-3.jpg")
+
+        # 2.4: media geométrica de la evidencia por dato
+        n_alturas = len(df_alturas)
+        for nombre, log_ev in zip(nombres, log_evs):
+            print(
+                f"   - Media geométrica {nombre}: "
+                f"{calcular_media_geometrica(log_ev, n_alturas):.4e}"
+            )
 
     print("\n" + "=" * 70)
     print("Práctica completada exitosamente")
