@@ -1,6 +1,6 @@
 Mi nombre es Lautaro Costa.
 
-Repositorio de Inferencia Bayesiana Causal 1 (UNSAM).
+Repositorio de Inferencia Bayesiana Causal (UNSAM).
 
 - 0-previa: cuestionario previo
 - 1.1, 1.2: practicas de argumentos causales y sorpresa
